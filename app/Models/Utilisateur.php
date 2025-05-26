@@ -10,15 +10,15 @@ class Utilisateur extends Model
     /** @use HasFactory<\Database\Factories\UtilisateurFactory> */
     use HasFactory;
 
-        public function projet() {
+    public function projets() {
         return $this->hasMany(Projet::class);
     }
     
-    public function skill() {
+    public function skills() {
         return $this->hasMany(Skill::class);
     }
 
-    public function experience() {
+    public function experiences() {
         return $this->hasMany(Experience::class);
     }
 }

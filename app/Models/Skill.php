@@ -9,4 +9,8 @@ class Skill extends Model
 {
     /** @use HasFactory<\Database\Factories\SkillFactory> */
     use HasFactory;
+
+    public function utilisateur() {
+        return $this->belongsTo(Utilisateur::class, 'utilisateur_id');
+    }
 }

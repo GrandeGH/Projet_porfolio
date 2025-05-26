@@ -10,4 +10,7 @@ class Projet extends Model
     /** @use HasFactory<\Database\Factories\ProjetFactory> */
     use HasFactory;
 
+    public function utilisateur() {
+        return $this->belongsTo(Utilisateur::class, 'utilisateur_id');
+    }
 }
