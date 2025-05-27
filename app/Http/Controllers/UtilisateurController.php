@@ -18,10 +18,8 @@ class UtilisateurController extends Controller
      */
     public function index()
     {
-    {
-        $utilisateurs = Utilisateur::all();
-        return Inertia::render('Utilisateur/MonPorfolio', ['utilisateurs' => $utilisateurs]);
-    }
+        $utilisateur = Utilisateur::first();
+        return Inertia::render('Utilisateur/About', ['utilisateur' => $utilisateur]);
     }
 
     /**
@@ -35,21 +33,22 @@ class UtilisateurController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUtilisateurRequest $request)
+    public function store(Request $request)
     {
-        $skill = new Skill();
+        $utilisateur = new Utilisateur();
+        $utilisateur->nom = $request->nom;
+        $utilisateur->prenom = $request->prenom;
+        $utilisateur->age = $request->age;
+        $utilisateur->bio = $request->bio;
+        $utilisateur->email = $request->email;
+        $utilisateur->save();
 
-
-        $experience = new Experience();
-        
-
-        $projet = new Projet();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Utilisateur $utilisateur)
+    public function show()
     {
         //
     }
@@ -59,13 +58,15 @@ class UtilisateurController extends Controller
      */
     public function edit(Utilisateur $utilisateur)
     {
-        //
+        return Inertia::render('Utilisateur/EditUser', [
+            'utilisateur' => $utilisateur
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUtilisateurRequest $request, Utilisateur $utilisateur)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -73,7 +74,7 @@ class UtilisateurController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Utilisateur $utilisateur)
+    public function destroy($id)
     {
         //
     }

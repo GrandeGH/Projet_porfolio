@@ -29,7 +29,10 @@ class ExperienceController extends Controller
      */
     public function store(StoreExperienceRequest $request)
     {
-        //
+        $experience = new Experience();
+        $experience->nom_d_experience = $request->nom_d_experience;
+        $experience->utilisateur_id = $utilisateur->id;
+        $experience->save();
     }
 
     /**

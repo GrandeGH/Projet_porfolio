@@ -21,7 +21,8 @@ class ProjetController extends Controller
      */
     public function create()
     {
-        //
+        $utilisateurs = utilisateur::all();
+        return Inertia::render('create', ['utilisateurs' => $utilisateurs]);
     }
 
     /**
@@ -29,7 +30,11 @@ class ProjetController extends Controller
      */
     public function store(StoreProjetRequest $request)
     {
-        //
+        $projet = new Projet();
+        $projet->nom_du_projet = $request->nom_du_projet;
+        $projet->description = $request->description;
+        $projet->utilisateur_id = $utilisateur->id;
+        $projet->save();
     }
 
     /**

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
-            $table->string("nom du skill");
+            $table->string("nom_du_skill");
             $table->unsignedTinyInteger('progres');
             $table->foreignId('utilisateur_id')->constrained()->onDelete('cascade');
             $table->timestamps();

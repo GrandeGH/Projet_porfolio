@@ -29,7 +29,11 @@ class SkillController extends Controller
      */
     public function store(StoreSkillRequest $request)
     {
-        //
+        $skill = new Skill();
+        $skill->nom_du_skill = $request->nom_du_skill;
+        $skill->progres = $request->progres;
+        $skill->utilisateur_id = $utilisateur->id;
+        $skill->save();
     }
 
     /**
