@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Utilisateur;
 use App\Http\Requests\StoreUtilisateurRequest;
 use App\Http\Requests\UpdateUtilisateurRequest;
+use App\Models\Skill;
+use App\Models\Experience;
+use App\Models\Projet;
+use Inertia\Inertia;
+use Illuminate\Http\Request;
 
 class UtilisateurController extends Controller
 {
@@ -13,7 +18,10 @@ class UtilisateurController extends Controller
      */
     public function index()
     {
-        //
+    {
+        $utilisateurs = Utilisateur::all();
+        return Inertia::render('Utilisateur/MonPorfolio', ['utilisateurs' => $utilisateurs]);
+    }
     }
 
     /**
@@ -29,7 +37,13 @@ class UtilisateurController extends Controller
      */
     public function store(StoreUtilisateurRequest $request)
     {
-        //
+        $skill = new Skill();
+
+
+        $experience = new Experience();
+        
+
+        $projet = new Projet();
     }
 
     /**
