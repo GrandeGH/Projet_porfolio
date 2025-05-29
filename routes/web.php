@@ -14,36 +14,39 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
+Route::get('/accueil', [UtilisateurController::class, 'index']);
 
-Route::get('/utilisateur', [UtilisateurController::class, 'index']);
+//ABOUT
+Route::get('/utilisateur', [UtilisateurController::class, 'about']);
 Route::get('/create/utilisateur', [UtilisateurController::class, 'create']);
 Route::post('/post/utilisateur', [UtilisateurController::class, 'store']);
-Route::get('/utilisateur/detail/{id}', [UtilisateurController::class, 'show']);
 Route::get('/utilisateur/edit/{utilisateur}', [UtilisateurController::class, 'edit']);
 Route::put('/utilisateur/update/{utilisateur}', [UtilisateurController::class, 'update']);
-Route::delete('/utilisateur/delete/{id}', [UtilisateurController::class, 'destroy']);
 
-
+//PROJET
 Route::get('/projets', [ProjetController::class, 'index']);
 Route::get('/create/projets', [ProjetController::class, 'create']);
 Route::post('/post/projets', [ProjetController::class, 'store']);
-Route::get('/projets/edit/{id}', [ProjetController::class, 'edit']);
-Route::put('/projets/update/{id}', [ProjetController::class, 'update']);
-Route::delete('/projets/delete/{id}', [ProjetController::class, 'destroy']);
+Route::get('/projets/edit/{projets}', [ProjetController::class, 'edit']);
+Route::put('/projets/update/{projets}', [ProjetController::class, 'update']);
+Route::delete('/projets/delete/{iprojets', [ProjetController::class, 'destroy']);
 
+
+//EXPERIENCE
 Route::get('/experiences', [ExperienceController::class, 'index']);
 Route::get('/create/experiences', [ExperienceController::class, 'create']);
 Route::post('/post/experiences', [ExperienceController::class, 'store']);
-Route::get('/experiences/edit/{id}', [ExperienceController::class, 'edit']);
-Route::put('/experiences/update/{id}', [ExperienceController::class, 'update']);
-Route::delete('/experiences/delete/{id}', [ExperienceController::class, 'destroy']);
+Route::get('/experiences/edit/{experiences}', [ExperienceController::class, 'edit']);
+Route::put('/experiences/update/{experiences}', [ExperienceController::class, 'update']);
+Route::delete('/experiences/delete/{experiences}', [ExperienceController::class, 'destroy']);
 
+//SKILL
 Route::get('/skills', [SkillController::class, 'index']);
 Route::get('/create/skills', [SkillController::class, 'create']);
 Route::post('/post/skills', [SkillController::class, 'store']);
-Route::get('/skills/edit/{id}', [SkillController::class, 'edit']);
-Route::put('/skills/update/{id}', [SkillController::class, 'update']);
-Route::delete('/skills/delete/{id}', [SkillController::class, 'destroy']);
+Route::get('/skills/edit/{skill}', [SkillController::class, 'edit']);
+Route::put('/skills/update/{skill}', [SkillController::class, 'update']);
+Route::delete('/skills/delete/{skill}', [SkillController::class, 'destroy']);
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

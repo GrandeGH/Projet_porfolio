@@ -18,6 +18,11 @@ class UtilisateurController extends Controller
      */
     public function index()
     {
+        return Inertia::render('Utilisateur/Accueil'); 
+    }
+
+    public function about()
+    {
         $utilisateur = Utilisateur::first();
         return Inertia::render('Utilisateur/About', ['utilisateur' => $utilisateur]);
     }
@@ -66,9 +71,16 @@ class UtilisateurController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Utilisateur $utilisateur)
     {
-        //
+        $utilisateur = Utilisateur::first();
+        $utilisateur->nom = $request->nom;
+        $utilisateur->prenom = $request->prenom;
+        $utilisateur->age = $request->age;
+        $utilisateur->email = $request->email;
+        $utilisateur->bio = $request->bio;
+        $utilisateur->save();
+
     }
 
     /**
