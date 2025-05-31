@@ -18,6 +18,7 @@ class UtilisateurController extends Controller
      */
     public function index()
     {
+        $utilisateur = Utilisateur::with(['projets', 'skills', 'experiences'])->find(1); // Par exemple, l'utilisateur connecté
         return Inertia::render('Utilisateur/Accueil'); 
     }
 
@@ -47,15 +48,15 @@ class UtilisateurController extends Controller
         $utilisateur->bio = $request->bio;
         $utilisateur->email = $request->email;
         $utilisateur->save();
-
-    }
+    } 
 
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show($id)
     {
-        //
+        $utilisateur = Utilisateur::with(['projets', 'experiences', 'skills'])->find($id);
+        return Inertia::render('Utilisateur/Accueil', ['utilisateur' => $utilisateur]);
     }
 
     /**

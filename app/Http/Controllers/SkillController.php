@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Utilisateur;
 use App\Models\Skill;
 use App\Http\Requests\StoreSkillRequest;
 use App\Http\Requests\UpdateSkillRequest;
+use Inertia\Inertia;
+use Illuminate\Http\Request;
 
 class SkillController extends Controller
 {
@@ -14,6 +17,7 @@ class SkillController extends Controller
     public function index()
     {
         $skills = Skill::all();
+        return Inertia::render(('Utilisateur/Skill/Skills'),['skills' => $skills]);
     }
 
     /**
@@ -21,19 +25,25 @@ class SkillController extends Controller
      */
     public function create()
     {
-        //
+        $skills = Skill::all();
+        return Inertia::render(('Utilisateur/Skill/CreateSkill'),['skills' => $skills]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSkillRequest $request)
+    public function store(Request $request)
     {
+        $utilisateur = Utilisateur::find($request->utilisateur_id);
+
         $skill = new Skill();
         $skill->nom_du_skill = $request->nom_du_skill;
         $skill->progres = $request->progres;
-        $skill->utilisateur_id = $utilisateur->id;
+        $skill->utilisateur_id = $request->utilisateur_id;
         $skill->save();
+
+        return redirect('/skills')->with('success', 'Skill ajouté.');
+
     }
 
     /**
@@ -47,24 +57,28 @@ class SkillController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Skill $skill)
+    public function edit($id)
     {
-        //
+        $skill = Skill::find($id);
+        return Inertia::render('Utilisateur/Skill/EditSkill', ['skill' => $skill]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSkillRequest $request, Skill $skill)
+    public function update(Request $request, $id)
     {
-        //
+        $skill = Skill::find($id);
+        $skill->nom_du_skill = $request->nom_du_skill;
+        $skill->progres = $request->progres;
+        $skill->save();
     }
-
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Skill $skill)
+    public function destroy($id)
     {
-        //
+        $skill = Skill::find($id);
+        $skill->delete();
     }
 }

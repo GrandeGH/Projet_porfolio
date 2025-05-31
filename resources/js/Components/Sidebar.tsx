@@ -10,9 +10,9 @@ export default function Sidebar() {
                 <nav className="flex flex-col space-y-2 p-5">
                     <Link className="text-xl" href="/accueil">Accueil</Link>
                     <Link className="text-xl" href="/utilisateur">About</Link>
-                    <Link className="text-xl" href="/utilisateur/edit">Skills</Link>
-                    <Link className="text-xl" href="/utilisateur/edit">Experiences</Link>
-                    <Link className="text-xl" href="/utilisateur/edit">Projets</Link>
+                    <Link className="text-xl" href="/skills">Skills</Link>
+                    <Link className="text-xl" href="/experiences">Experiences</Link>
+                    <Link className="text-xl" href="/projets">Projets</Link>
                     <Link className="text-xl" href="/utilisateur/edit">Contact</Link>
                     <div>(Réseaux sociaux)</div>
                 </nav>

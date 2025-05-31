@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("nom_du_projet");
             $table->text("description")->nullable();
+            $table->string('image')->nullable(); //chemin image
+            $table->string('lien')->nullable(); //line GitHub
             $table->foreignId('utilisateur_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
